@@ -1,0 +1,170 @@
+.upload-progress {
+  width: 100%;
+  animation: slideIn 0.3s ease;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+
+  .file-preview {
+    width: 48px;
+    height: 48px;
+    background: #e9ecef;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      font-size: 1.5rem;
+      color: #007bff;
+    }
+  }
+
+  .file-details {
+    flex: 1;
+
+    h4 {
+      margin: 0;
+      font-size: 1rem;
+      color: #343a40;
+      margin-bottom: 0.25rem;
+    }
+
+    .file-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #6c757d;
+      font-size: 0.875rem;
+
+      i {
+        margin-right: 0.25rem;
+      }
+
+      .upload-status {
+        &.paused {
+          color: #ffc107;
+        }
+      }
+    }
+  }
+}
+
+.progress-container {
+  margin-bottom: 1.5rem;
+
+  .progress-bar {
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+
+    .progress-fill {
+      height: 100%;
+      background: #007bff;
+      transition: width 0.3s ease;
+
+      &.paused {
+        background: #ffc107;
+      }
+    }
+  }
+
+  .progress-stats {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    color: #6c757d;
+    font-size: 0.875rem;
+
+    i {
+      margin-right: 0.25rem;
+      opacity: 0.7;
+    }
+  }
+}
+
+.upload-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    i {
+      font-size: 1rem;
+    }
+
+    &.start-button,
+    &.resume-button {
+      background: #28a745;
+      color: white;
+      
+      &:hover {
+        background: #218838;
+      }
+    }
+
+    &.pause-button {
+      background: #ffc107;
+      color: #000;
+      
+      &:hover {
+        background: #e0a800;
+      }
+    }
+
+    &.abort-button {
+      background: #dc3545;
+      color: white;
+      
+      &:hover {
+        background: #c82333;
+      }
+    }
+
+    &.success-button {
+      background: #28a745;
+      color: white;
+      cursor: default;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      
+      &:hover {
+        background: inherit;
+      }
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

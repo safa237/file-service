@@ -1,0 +1,7 @@
+<div class="error-message" *ngIf="message" role="alert">
+  <i class="fas fa-exclamation-circle"></i>
+  <span>{{ message }}</span>
+  <button (click)="dismiss.emit()" aria-label="Dismiss error">
+    <i class="fas fa-times"></i>
+  </button>
+</div>

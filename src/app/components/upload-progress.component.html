@@ -1,0 +1,84 @@
+<div class="upload-progress">
+  <div class="file-info">
+    <div class="file-preview">
+      <i class="fas fa-file-video"></i>
+    </div>
+    <div class="file-details">
+      <h4>{{ uploadState.fileName }}</h4>
+      <div class="file-meta">
+        <span class="file-size">
+          <i class="fas fa-hdd"></i>
+          {{ uploadState.fileSize | fileSize }}
+        </span>
+        <span class="upload-status" [class.paused]="isPaused">
+          <i class="fas" [class.fa-circle-notch]="uploading" [class.fa-spin]="uploading" 
+                       [class.fa-pause-circle]="isPaused"
+                       [class.fa-check-circle]="progress === 100"></i>
+          {{ uploading ? (isPaused ? 'Paused' : 'Uploading...') : 
+             (progress === 100 ? 'Complete' : 'Ready') }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress-fill" 
+           [style.width.%]="progress"
+           [class.paused]="isPaused">
+      </div>
+    </div>
+    <div class="progress-stats">
+      <span class="progress-percentage">
+        <i class="fas fa-percentage"></i>
+        {{ progress }}%
+      </span>
+      <span class="upload-speed" *ngIf="uploading && !isPaused">
+        <i class="fas fa-tachometer-alt"></i>
+        {{ uploadState.speed }}/s
+      </span>
+      <span class="time-remaining" *ngIf="uploading && !isPaused">
+        <i class="fas fa-clock"></i>
+        {{ uploadState.timeRemaining }}
+      </span>
+    </div>
+  </div>
+
+  <div class="upload-controls">
+    <button *ngIf="!uploading && !isPaused" 
+            (click)="start.emit()"
+            class="start-button">
+      <i class="fas fa-play"></i>
+      <span>Start Upload</span>
+    </button>
+    
+    <button *ngIf="uploading && !isPaused" 
+            (click)="pause.emit()"
+            class="pause-button"
+            [disabled]="progress === 100">
+      <i class="fas fa-pause"></i>
+      <span>Pause</span>
+    </button>
+    
+    <button *ngIf="isPaused" 
+            (click)="resume.emit()"
+            class="resume-button">
+      <i class="fas fa-play"></i>
+      <span>Resume</span>
+    </button>
+    
+    <button (click)="abort.emit()"
+            class="abort-button"
+            [disabled]="progress === 100">
+      <i class="fas fa-times"></i>
+      <span>Cancel</span>
+    </button>
+
+    <button *ngIf="progress === 100"
+            class="success-button"
+            disabled>
+      <i class="fas fa-check"></i>
+      <span>Upload Complete</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="upload-prompt" *ngIf="!hasFile"
+     [class.active]="isDragging"
+     (dragover)="onDragOver($event)" 
+     (dragleave)="onDragLeave($event)"
+     (drop)="onDrop($event)">
+  <i class="fas fa-cloud-upload-alt"></i>
+  <h3>Drag & Drop Your Video</h3>
+  <p class="upload-hint">or select a file from your computer</p>
+  <label class="upload-button" role="button" tabindex="0">
+    <i class="fas fa-folder-open"></i>
+    Choose File
+    <input type="file" 
+           (change)="onFileSelected($event)" 
+           accept="video/*" 
+           style="display: none">
+  </label>
+  <p class="file-type-hint">Supports: MP4, WebM, MOV (max 2GB)</p>
+</div>
